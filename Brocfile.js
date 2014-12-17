@@ -49,8 +49,14 @@ if (env !== 'development') {
 }
 
 if (env === 'test') {
+  
   var testHarness = new Funnel('test', {
     include: [new RegExp(/index/)],
+    destDir: 'test'
+  });
+
+  var worker = new Funnel('test/tests', {
+    include: [ new RegExp(/worker/)],
     destDir: 'test'
   });
 
@@ -64,7 +70,7 @@ if (env === 'test') {
     destDir: 'test'
   });
 
-  output.push(testHarness, mocha, json3);
+  output.push(testHarness, mocha, json3, worker);
 }
 
 
